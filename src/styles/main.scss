@@ -1,0 +1,45 @@
+:root {
+  --clr-primary: rgb(54, 112, 199);
+  --clr-light: #f4f4f4;
+  --clr-dark: #333;
+  --clr-warning: rgb(99, 36, 36);
+}
+
+*,
+*::before,
+*::after {
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Work Sans", sans-serif;
+  font-weight: 300;
+  font-size: 1.5rem;
+  background-color: var(--clr-primary);
+  color: var(--clr-light);
+
+  display: flex;
+  flex-direction: column;
+  .title {
+    text-align: center;
+    font-size: calc(7vw + 2rem);
+    font-weight: 900;
+    color: rgba(0, 0, 0, 0.2);
+    letter-spacing: 1px;
+    margin: -0.2em 0 0 0.5em;
+  }
+  .lists {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    .all-tasks {
+      .task-list {
+        font-size: 1.2rem;
+        line-height: 1.7;
+        list-style: circle;
+      }
+    }
+  }
+}

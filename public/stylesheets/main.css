@@ -1,10 +1,3 @@
-:root {
-  --clr-primary: rgb(54, 112, 199);
-  --clr-light: #f4f4f4;
-  --clr-dark: #333;
-  --clr-warning: rgb(99, 36, 36);
-}
-
 *,
 *::before,
 *::after {
@@ -17,8 +10,8 @@ body {
   font-family: "Work Sans", sans-serif;
   font-weight: 300;
   font-size: 1.5rem;
-  background-color: var(--clr-primary);
-  color: var(--clr-light);
+  background-color: #3670c7;
+  color: #f4f4f4;
   display: flex;
   flex-direction: column;
 }
@@ -39,6 +32,56 @@ body .lists .all-tasks .task-list {
   font-size: 1.2rem;
   line-height: 1.7;
   list-style: circle;
+  padding-left: 1.1em;
+}
+body .lists .all-tasks .task-list .active-list {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+body .lists form {
+  display: flex;
+}
+body .lists form .btn {
+  cursor: pointer;
+  background: 0;
+  border: 0;
+  padding: 0;
+  color: inherit;
+}
+body .lists form .btn.create {
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin-right: 0.25em;
+  transition: opacity 250ms ease-in-out;
+}
+body .lists form .btn.create:hover {
+  opacity: 0.7;
+}
+body .lists form .new-input {
+  order: 2;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  border-bottom: 1px solid currentColor;
+  font-size: inherit;
+  outline: none;
+  transition: border-bottom 250ms ease-in-out;
+}
+body .lists form .new-input::placeholder {
+  color: currentColor;
+}
+body .lists form .new-input:focus {
+  border-bottom-width: 3px;
+}
+body .lists form .new-input:focus::placeholder {
+  opacity: 0.2;
+}
+body .lists form .new-input.list {
+  font-size: 1.1rem;
+}
+body .lists .todo-list {
+  background: #f4f4f4;
+  color: #333;
 }
 
 /*# sourceMappingURL=main.css.map */

@@ -1,9 +1,7 @@
-:root {
-  --clr-primary: rgb(54, 112, 199);
-  --clr-light: #f4f4f4;
-  --clr-dark: #333;
-  --clr-warning: rgb(99, 36, 36);
-}
+$clr-primary: rgb(54, 112, 199);
+$clr-light: #f4f4f4;
+$clr-dark: #333;
+$clr-warning: rgb(99, 36, 36);
 
 *,
 *::before,
@@ -17,8 +15,8 @@ body {
   font-family: "Work Sans", sans-serif;
   font-weight: 300;
   font-size: 1.5rem;
-  background-color: var(--clr-primary);
-  color: var(--clr-light);
+  background-color: $clr-primary;
+  color: $clr-light;
 
   display: flex;
   flex-direction: column;
@@ -39,7 +37,58 @@ body {
         font-size: 1.2rem;
         line-height: 1.7;
         list-style: circle;
+        padding-left: 1.1em;
+        .active-list {
+          font-weight: 700;
+          letter-spacing: 0.5px;
+        }
       }
+    }
+    form {
+      display: flex;
+      .btn {
+        cursor: pointer;
+        background: 0;
+        border: 0;
+        padding: 0;
+        color: inherit;
+        &.create {
+          font-size: 1.5rem;
+          font-weight: 900;
+          margin-right: 0.25em;
+          transition: opacity 250ms ease-in-out;
+          &:hover {
+            opacity: 0.7;
+          }
+        }
+      }
+      .new-input {
+        order: 2;
+        background: transparent;
+        border: 0;
+        color: inherit;
+        border-bottom: 1px solid currentColor;
+        font-size: inherit;
+        outline: none;
+        transition: border-bottom 250ms ease-in-out;
+        &::placeholder {
+          color: currentColor;
+        }
+        &:focus {
+          border-bottom-width: 3px;
+          &::placeholder {
+            opacity: 0.2;
+          }
+        }
+        &.list {
+          font-size: 1.1rem;
+        }
+      }
+    }
+    .todo-list {
+      $spacer: 2rem;
+      background: $clr-light;
+      color: $clr-dark;
     }
   }
 }

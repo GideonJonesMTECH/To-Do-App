@@ -71,6 +71,7 @@ body .lists form .new-input {
   border-bottom: 1px solid currentColor;
   font-size: inherit;
   outline: none;
+  padding: 0.25em;
   transition: border-bottom 250ms ease-in-out;
 }
 body .lists form .new-input::placeholder {
@@ -106,6 +107,7 @@ body .lists .todo-list .todo-header .task-count {
 }
 body .lists .todo-list .todo-body {
   padding: 2rem;
+  position: relative;
 }
 body .lists .todo-list .todo-body .tasks .task {
   cursor: pointer;
@@ -126,6 +128,7 @@ body .lists .todo-list .todo-body .tasks .task::after {
   opacity: 0.1;
 }
 body .lists .todo-list .todo-body .tasks .task label {
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
   position: relative;
@@ -166,6 +169,28 @@ body .lists .todo-list .todo-body .tasks .task [type=checkbox]:checked + label .
 body .lists .todo-list .todo-body .tasks .task [type=checkbox]:checked + label::after {
   opacity: 1;
   transform: scaleX(1);
+}
+body .lists .todo-list .todo-body .delete-stuff {
+  display: flex;
+  justify-content: space-evenly;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: -35px;
+}
+body .lists .todo-list .todo-body .delete-stuff .btn.delete {
+  cursor: pointer;
+  opacity: 0.7;
+  font-size: 1rem;
+  color: #f4f4f4;
+  background: transparent;
+  border: none;
+  outline: none;
+  transition: color 200ms ease-in-out;
+}
+body .lists .todo-list .todo-body .delete-stuff .btn.delete:hover {
+  color: #632424;
+  opacity: 1;
 }
 
 /*# sourceMappingURL=main.css.map */

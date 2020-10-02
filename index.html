@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="./public/stylesheets/main.css" />
     <!--Sass --watch src/styles:public/stylesheets-->
     <!--^^In the Console^^  Make sure you're in the main directory, and then copy and paste the line, Watch folder styles in the src (or app) folder. Semicolon next. Lastly, type out the output, Which is going to be in your public folder-->
+    <script defer src="src/code/script.js"></script>
   </head>
   <body>
     <main>
@@ -70,16 +71,19 @@
               <!--Close Task 3-->
             </div>
 
-            <div class="new-task-creator"></div>
-            <form action="">
-              <input
-                type="text"
-                class="new-input task"
-                placeholder="New Task Name"
-                aria-label="new task name"
-              />
-              <button class="btn create" aria-label="create new task">+</button>
-            </form>
+            <div class="new-task-creator">
+              <form action="">
+                <input
+                  type="text"
+                  class="new-input task"
+                  placeholder="New Task Name"
+                  aria-label="new task name"
+                />
+                <button class="btn create" aria-label="create new task">
+                  +
+                </button>
+              </form>
+            </div>
             <div class="delete-stuff">
               <button class="btn delete">Clear Completed Tasks</button>
               <button class="btn delete">Delete List</button>

@@ -114,13 +114,24 @@ body {
         padding: $spacer;
         .tasks {
           .task {
+            cursor: pointer;
+            position: relative;
             [type="checkbox"] {
               opacity: 0;
               position: absolute;
             }
+            &::after {
+              content: "";
+              position: absolute;
+              right: 0;
+              left: 0;
+              bottom: 0.75em;
+              height: 1px;
+              background: currentColor;
+              opacity: 0.1;
+            }
             label {
-              cursor: pointer;
-              display: flex;
+              display: inline-flex;
               align-items: center;
               position: relative;
               margin-bottom: 1.25em;
@@ -133,16 +144,35 @@ body {
                 cursor: pointer;
                 border: 2px solid currentColor;
                 border-radius: 50%;
+                transform: scale(1);
+                transition: transform 300ms ease-in-out;
               }
               &::after {
                 content: "";
                 position: absolute;
+                left: 1.5em;
                 right: 0;
-                left: 0;
-                bottom: -50%;
-                height: 1px;
+                height: 3px;
                 background: currentColor;
-                opacity: 0.1;
+                transform: scaleX(0);
+                transform-origin: left;
+                transition: transform 150ms ease-in-out;
+              }
+            }
+            &:hover .custom-checkbox,
+            [type="checkbox"]:focus + label .custom-checkbox {
+              transform: scale(1.35);
+              color: $clr-primary;
+            }
+            [type="checkbox"]:checked + label {
+              .custom-checkbox {
+                background: $clr-primary;
+                border-color: $clr-primary;
+                box-shadow: inset 0 0 0px 2px white;
+              }
+              &::after {
+                opacity: 1;
+                transform: scaleX(1);
               }
             }
           }

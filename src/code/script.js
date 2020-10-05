@@ -34,15 +34,19 @@ tasksContainer.addEventListener('click', e => {
 })
 
 clearCompletedTasksButton.addEventListener('click', e => {
- const selectedList = lists.find(list => list.id === selectedListId);
- selectedList.tasks = selectedList.tasks.filter(task => !task.complete)
- saveAndRender();
+ if (confirm("Are you sure you want to clear the tasks?")) {
+  const selectedList = lists.find(list => list.id === selectedListId);
+  selectedList.tasks = selectedList.tasks.filter(task => !task.complete)
+  saveAndRender();
+ }
 })
 
 deleteListButton.addEventListener('click', e => {
- lists = lists.filter(list => list.id !== selectedListId);
- selectedListId = null;
- saveAndRender();
+ if (confirm("Are you sure you want to delete this list?")) {
+  lists = lists.filter(list => list.id !== selectedListId);
+  selectedListId = null;
+  saveAndRender();
+ }
 })
 
 newListForm.addEventListener('submit', e => {

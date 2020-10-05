@@ -30,9 +30,9 @@ body {
   }
   .lists {
     display: flex;
-    flex-direction: row;
     justify-content: space-evenly;
     .all-tasks {
+      margin: 20px;
       .task-list {
         font-size: 1.2rem;
         line-height: 1.7;
@@ -97,6 +97,7 @@ body {
       $spacer: 2rem;
       background: $clr-light;
       color: $clr-dark;
+      margin: $spacer/2;
       .todo-header {
         padding: $spacer;
         background: #e4e4e4;
@@ -204,5 +205,15 @@ body {
         }
       }
     }
+  }
+}
+@media screen and (max-width: 600px) {
+  .lists {
+    flex-direction: column;
+  }
+}
+@media screen and (min-width: 600px) {
+  .lists {
+    flex-direction: row;
   }
 }

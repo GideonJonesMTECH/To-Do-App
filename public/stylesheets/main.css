@@ -25,8 +25,10 @@ body .title {
 }
 body .lists {
   display: flex;
-  flex-direction: row;
   justify-content: space-evenly;
+}
+body .lists .all-tasks {
+  margin: 20px;
 }
 body .lists .all-tasks .task-list {
   font-size: 1.2rem;
@@ -90,6 +92,7 @@ body .lists .todo-list {
   flex-grow: 0.25;
   background: #f4f4f4;
   color: #333;
+  margin: 1rem;
 }
 body .lists .todo-list .todo-header {
   padding: 2rem;
@@ -191,6 +194,17 @@ body .lists .todo-list .todo-body .delete-stuff .btn.delete {
 body .lists .todo-list .todo-body .delete-stuff .btn.delete:hover {
   color: #632424;
   opacity: 1;
+}
+
+@media screen and (max-width: 600px) {
+  .lists {
+    flex-direction: column;
+  }
+}
+@media screen and (min-width: 600px) {
+  .lists {
+    flex-direction: row;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

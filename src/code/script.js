@@ -40,7 +40,6 @@ tasksContainer.addEventListener('click', e => {
  else if (e.target.tagName.toLowerCase() === 'button') {
   //Check Edit Button
   console.warn(selectedTask);
-  /*
   if (e.target.className == 'edit-task-button') {
    console.warn(selectedTask);
    let newName = prompt("What do you want to change the task to?");
@@ -53,7 +52,6 @@ tasksContainer.addEventListener('click', e => {
   }
  } else {
   return;
-  */
  }
  saveAndRender();
 });

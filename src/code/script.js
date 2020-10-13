@@ -30,28 +30,32 @@ tasksContainer.addEventListener('click', e => {
  selectedList = lists.find(list => list.id === selectedListId);
  //Check if Input
  if (e.target.tagName.toLowerCase() === 'input') {
-  var selectedTask = selectedList.tasks.find(task => task.id === e.target.id);
+  let selectedTask = selectedList.tasks.find(task => task.id === e.target.id);
+  console.warn(selectedTask);
   selectedTask.complete = e.target.checked;
   save();
   renderTaskCount(selectedList);
-  console.warn(selectedTask);
  }
- //Check if Button
+ //Check if Buttons
  else if (e.target.tagName.toLowerCase() === 'button') {
-  //Check Edit Button
-  console.warn(selectedTask);
   if (e.target.className == 'edit-task-button') {
-   console.warn(selectedTask);
+   //Check Edit Button
+   let input = e.target.parentElement.children[0];
+   let selectedTask = selectedList.tasks.find(task => task.id === input.id);
+   // console.warn(selectedTask);
    let newName = prompt("What do you want to change the task to?");
    if (newName != null) selectedTask.name = newName;
    //Check Delete Button
   } else if (e.target.className == 'delete-task-button') {
-   selectedList.tasks = selectedList.tasks.filter(task => task.id !== selectedTask.id);
+   let input = e.target.parentElement.children[0];
+   let selectedTask = selectedList.tasks.find(task => task.id === input.id);
+   console.warn(selectedTask);
+   if (confirm("Do you want to delete this task?")) {
+    selectedList.tasks = selectedList.tasks.filter(task => task.id !== selectedTask.id);
+   }
   } else {
    return;
   }
- } else {
-  return;
  }
  saveAndRender();
 });

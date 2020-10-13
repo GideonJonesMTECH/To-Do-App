@@ -11,6 +11,8 @@ const newTaskForm = document.querySelector('[data-new-task-form]');
 const newTaskInput = document.querySelector('[data-new-task-input]');
 const clearCompletedTasksButton = document.querySelector('[data-clear-complete-tasks-button]');
 
+
+
 const LOCAL_STORAGE_LIST_KEY = 'task.lists';
 const LOCAL_STORAGE_SELECTED_LIST_ID_KEY = 'task.selectedListId';
 let lists = JSON.parse(localStorage.getItem(LOCAL_STORAGE_LIST_KEY)) || [];
@@ -24,14 +26,39 @@ listsContainer.addEventListener('click', e => {
 });
 
 tasksContainer.addEventListener('click', e => {
+ //Selected List and Task
+ selectedList = lists.find(list => list.id === selectedListId);
+ //Check if Input
  if (e.target.tagName.toLowerCase() === 'input') {
-  selectedList = lists.find(list => list.id === selectedListId)
-  const selectedTask = selectedList.tasks.find(task => task.id === e.target.id);
+  let selectedTask = selectedList.tasks.find(task => task.id === e.target.id);
+  console.warn(selectedTask);
   selectedTask.complete = e.target.checked;
   save();
   renderTaskCount(selectedList);
  }
-})
+ //Check if Buttons
+ else if (e.target.tagName.toLowerCase() === 'button') {
+  if (e.target.className == 'edit-task-button') {
+   //Check Edit Button
+   let input = e.target.parentElement.children[0];
+   let selectedTask = selectedList.tasks.find(task => task.id === input.id);
+   // console.warn(selectedTask);
+   let newName = prompt("What do you want to change the task to?");
+   if (newName != null) selectedTask.name = newName;
+   //Check Delete Button
+  } else if (e.target.className == 'delete-task-button') {
+   let input = e.target.parentElement.children[0];
+   let selectedTask = selectedList.tasks.find(task => task.id === input.id);
+   console.warn(selectedTask);
+   if (confirm("Do you want to delete this task?")) {
+    selectedList.tasks = selectedList.tasks.filter(task => task.id !== selectedTask.id);
+   }
+  } else {
+   return;
+  }
+ }
+ saveAndRender();
+});
 
 clearCompletedTasksButton.addEventListener('click', e => {
  if (confirm("Are you sure you want to clear the tasks?")) {

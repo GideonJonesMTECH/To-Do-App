@@ -24,37 +24,37 @@ listsContainer.addEventListener('click', e => {
 })
 
 tasksContainer.addEventListener('click', e => {
- if (e.target.tagName.toLowerCase() === 'input') {
-  const selectedList = lists.find(list => list.id === selectedListId);
-  const selectedTask = selectedList.tasks.find(task => task.id === e.target.id);
-  selectedTask.complete = e.target.checked;
-  save();
-  renderTaskCount(selectedList);
- } else if (e.target.tagName.toLowerCase() === 'button') {
+ let selectedList = lists.find(list => list.id === selectedListId);
+ if (e.target.tagName.toLowerCase() === 'button') {
   if (e.target.className == 'edit-task-button') {
    //Check Edit Button
    let input = e.target.parentElement.children[0];
    let selectedTask = selectedList.tasks.find(task => task.id === input.id);
-   // console.warn(selectedTask);
    let newName = prompt("What do you want to change the task to?");
    if (newName != null) selectedTask.name = newName;
+   saveAndRender();
    //Check Delete Button
   } else if (e.target.className == 'delete-task-button') {
    let input = e.target.parentElement.children[0];
    let selectedTask = selectedList.tasks.find(task => task.id === input.id);
-   console.warn(selectedTask);
    if (confirm("Do you want to delete this task?")) {
     selectedList.tasks = selectedList.tasks.filter(task => task.id !== selectedTask.id);
    }
+   saveAndRender();
   } else {
    return;
   }
+ } else if (e.target.tagName.toLowerCase() === 'input') {
+  const selectedTask = selectedList.tasks.find(task => task.id === e.target.id);
+  selectedTask.complete = e.target.checked;
+  save();
+  renderTaskCount(selectedList);
  }
 })
 
 clearCompleteTasksButton.addEventListener('click', e => {
+ const selectedList = lists.find(list => list.id === selectedListId);
  if (confirm("Are you sure you want to clear the tasks?")) {
-  const selectedList = lists.find(list => list.id === selectedListId);
   selectedList.tasks = selectedList.tasks.filter(task => !task.complete);
   saveAndRender();
  }

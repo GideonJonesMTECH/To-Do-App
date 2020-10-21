@@ -113,6 +113,8 @@ body .lists .todo-list .todo-body {
   position: relative;
 }
 body .lists .todo-list .todo-body .tasks .task {
+  display: flex;
+  justify-content: space-between;
   cursor: pointer;
   position: relative;
 }
@@ -136,6 +138,7 @@ body .lists .todo-list .todo-body .tasks .task label {
   align-items: center;
   position: relative;
   margin-bottom: 1.25em;
+  margin-right: 2em;
 }
 body .lists .todo-list .todo-body .tasks .task label .custom-checkbox {
   display: inline-block;
@@ -172,6 +175,24 @@ body .lists .todo-list .todo-body .tasks .task [type=checkbox]:checked + label .
 body .lists .todo-list .todo-body .tasks .task [type=checkbox]:checked + label::after {
   opacity: 1;
   transform: scaleX(1);
+}
+body .lists .todo-list .todo-body .tasks .task .buttons {
+  align-items: center;
+}
+body .lists .todo-list .todo-body .tasks .task .buttons button {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 0.5em 1em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.25rem;
+  color: #3670c7;
+  transition: color 200ms ease-in-out;
+}
+body .lists .todo-list .todo-body .tasks .task .buttons:hover {
+  color: #632424;
 }
 body .lists .todo-list .todo-body .delete-stuff {
   display: flex;

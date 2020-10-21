@@ -28,14 +28,14 @@ tasksContainer.addEventListener('click', e => {
  if (e.target.tagName.toLowerCase() === 'button') {
   if (e.target.className == 'edit-task-button') {
    //Check Edit Button
-   let input = e.target.parentElement.children[0];
+   let input = e.target.parentElement.parentElement.children[0];
    let selectedTask = selectedList.tasks.find(task => task.id === input.id);
    let newName = prompt("What do you want to change the task to?");
    if (newName != null) selectedTask.name = newName;
    saveAndRender();
-   //Check Delete Button
   } else if (e.target.className == 'delete-task-button') {
-   let input = e.target.parentElement.children[0];
+   //Check Delete Button
+   let input = e.target.parentElement.parentElement.children[0];
    let selectedTask = selectedList.tasks.find(task => task.id === input.id);
    if (confirm("Do you want to delete this task?")) {
     selectedList.tasks = selectedList.tasks.filter(task => task.id !== selectedTask.id);

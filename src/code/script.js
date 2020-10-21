@@ -49,6 +49,25 @@ tasksContainer.addEventListener('click', e => {
   selectedTask.complete = e.target.checked;
   save();
   renderTaskCount(selectedList);
+ } else if (e.target.tagName.toLowerCase() === 'i') {
+  if (e.target.className == 'fa fa-pencil') {
+   //Check Edit Button
+   let input = e.target.parentElement.parentElement.parentElement.children[0];
+   let selectedTask = selectedList.tasks.find(task => task.id === input.id);
+   let newName = prompt("What do you want to change the task to?");
+   if (newName != null) selectedTask.name = newName;
+   saveAndRender();
+  } else if (e.target.className == 'fa fa-trash') {
+   //Check Delete Button
+   let input = e.target.parentElement.parentElement.parentElement.children[0];
+   let selectedTask = selectedList.tasks.find(task => task.id === input.id);
+   if (confirm("Do you want to delete this task?")) {
+    selectedList.tasks = selectedList.tasks.filter(task => task.id !== selectedTask.id);
+   }
+   saveAndRender();
+  } else {
+   return;
+  }
  }
 })
 

@@ -25,11 +25,11 @@ listsContainer.addEventListener('click', e => {
 
 tasksContainer.addEventListener('click', e => {
  if (e.target.tagName.toLowerCase() === 'input') {
-  const selectedList = lists.find(list => list.id === selectedListId)
-  const selectedTask = selectedList.tasks.find(task => task.id === e.target.id)
-  selectedTask.complete = e.target.checked
-  save()
-  renderTaskCount(selectedList)
+  const selectedList = lists.find(list => list.id === selectedListId);
+  const selectedTask = selectedList.tasks.find(task => task.id === e.target.id);
+  selectedTask.complete = e.target.checked;
+  save();
+  renderTaskCount(selectedList);
  } else if (e.target.tagName.toLowerCase() === 'button') {
   if (e.target.className == 'edit-task-button') {
    //Check Edit Button
@@ -54,39 +54,39 @@ tasksContainer.addEventListener('click', e => {
 
 clearCompleteTasksButton.addEventListener('click', e => {
  if (confirm("Are you sure you want to clear the tasks?")) {
-  const selectedList = lists.find(list => list.id === selectedListId)
-  selectedList.tasks = selectedList.tasks.filter(task => !task.complete)
-  saveAndRender()
+  const selectedList = lists.find(list => list.id === selectedListId);
+  selectedList.tasks = selectedList.tasks.filter(task => !task.complete);
+  saveAndRender();
  }
 })
 
 deleteListButton.addEventListener('click', e => {
  if (confirm("Are you sure you want to delete this list?")) {
-  lists = lists.filter(list => list.id !== selectedListId)
-  selectedListId = null
-  saveAndRender()
+  lists = lists.filter(list => list.id !== selectedListId);
+  selectedListId = null;
+  saveAndRender();
  }
 })
 
 newListForm.addEventListener('submit', e => {
- e.preventDefault()
- const listName = newListInput.value
- if (listName == null || listName === '') return
- const list = createList(listName)
- newListInput.value = null
- lists.push(list)
- saveAndRender()
+ e.preventDefault();
+ const listName = newListInput.value;
+ if (listName == null || listName === '') return;
+ const list = createList(listName);
+ newListInput.value = null;
+ lists.push(list);
+ saveAndRender();
 })
 
 newTaskForm.addEventListener('submit', e => {
- e.preventDefault()
- const taskName = newTaskInput.value
- if (taskName == null || taskName === '') return
- const task = createTask(taskName)
- newTaskInput.value = null
- const selectedList = lists.find(list => list.id === selectedListId)
- selectedList.tasks.push(task)
- saveAndRender()
+ e.preventDefault();
+ const taskName = newTaskInput.value;
+ if (taskName == null || taskName === '') return;
+ const task = createTask(taskName);
+ newTaskInput.value = null;
+ const selectedList = lists.find(list => list.id === selectedListId);
+ selectedList.tasks.push(task);
+ saveAndRender();
 })
 
 function createList(name) {
@@ -111,36 +111,36 @@ function saveAndRender() {
 }
 
 function save() {
- localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(lists))
- localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedListId)
+ localStorage.setItem(LOCAL_STORAGE_LIST_KEY, JSON.stringify(lists));
+ localStorage.setItem(LOCAL_STORAGE_SELECTED_LIST_ID_KEY, selectedListId);
 }
 
 function render() {
- clearElement(listsContainer)
- renderLists()
+ clearElement(listsContainer);
+ renderLists();
 
- const selectedList = lists.find(list => list.id === selectedListId)
+ const selectedList = lists.find(list => list.id === selectedListId);
  if (selectedListId == null) {
-  listDisplayContainer.style.display = 'none'
+  listDisplayContainer.style.display = 'none';
  } else {
-  listDisplayContainer.style.display = ''
-  listTitleElement.innerText = selectedList.name
-  renderTaskCount(selectedList)
-  clearElement(tasksContainer)
-  renderTasks(selectedList)
+  listDisplayContainer.style.display = '';
+  listTitleElement.innerText = selectedList.name;
+  renderTaskCount(selectedList);
+  clearElement(tasksContainer);
+  renderTasks(selectedList);
  }
 }
 
 function renderTasks(selectedList) {
  selectedList.tasks.forEach(task => {
-  const taskElement = document.importNode(taskTemplate.content, true)
-  const checkbox = taskElement.querySelector('input')
-  checkbox.id = task.id
-  checkbox.checked = task.complete
-  const label = taskElement.querySelector('label')
-  label.htmlFor = task.id
-  label.append(task.name)
-  tasksContainer.appendChild(taskElement)
+  const taskElement = document.importNode(taskTemplate.content, true);
+  const checkbox = taskElement.querySelector('input');
+  checkbox.id = task.id;
+  checkbox.checked = task.complete;
+  const label = taskElement.querySelector('label');
+  label.htmlFor = task.id;
+  label.append(task.name);
+  tasksContainer.appendChild(taskElement);
  })
 }
 
@@ -152,21 +152,21 @@ function renderTaskCount(selectedList) {
 
 function renderLists() {
  lists.forEach(list => {
-  const listElement = document.createElement('li')
-  listElement.dataset.listId = list.id
-  listElement.classList.add("list-name")
-  listElement.innerText = list.name
+  const listElement = document.createElement('li');
+  listElement.dataset.listId = list.id;
+  listElement.classList.add("list-name");
+  listElement.innerText = list.name;
   if (list.id === selectedListId) {
-   listElement.classList.add('active-list')
+   listElement.classList.add('active-list');
   }
-  listsContainer.appendChild(listElement)
+  listsContainer.appendChild(listElement);
  })
 }
 
 function clearElement(element) {
  while (element.firstChild) {
-  element.removeChild(element.firstChild)
+  element.removeChild(element.firstChild);
  }
 }
 
-render()
+render();

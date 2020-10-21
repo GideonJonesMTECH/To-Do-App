@@ -30,8 +30,7 @@ tasksContainer.addEventListener('click', e => {
   selectedTask.complete = e.target.checked
   save()
   renderTaskCount(selectedList)
- }
- /* else if (e.target.tagName.toLowerCase() === 'button') {
+ } else if (e.target.tagName.toLowerCase() === 'button') {
   if (e.target.className == 'edit-task-button') {
    //Check Edit Button
    let input = e.target.parentElement.children[0];
@@ -50,19 +49,23 @@ tasksContainer.addEventListener('click', e => {
   } else {
    return;
   }
- } */
+ }
 })
 
 clearCompleteTasksButton.addEventListener('click', e => {
- const selectedList = lists.find(list => list.id === selectedListId)
- selectedList.tasks = selectedList.tasks.filter(task => !task.complete)
- saveAndRender()
+ if (confirm("Are you sure you want to clear the tasks?")) {
+  const selectedList = lists.find(list => list.id === selectedListId)
+  selectedList.tasks = selectedList.tasks.filter(task => !task.complete)
+  saveAndRender()
+ }
 })
 
 deleteListButton.addEventListener('click', e => {
- lists = lists.filter(list => list.id !== selectedListId)
- selectedListId = null
- saveAndRender()
+ if (confirm("Are you sure you want to delete this list?")) {
+  lists = lists.filter(list => list.id !== selectedListId)
+  selectedListId = null
+  saveAndRender()
+ }
 })
 
 newListForm.addEventListener('submit', e => {
